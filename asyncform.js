@@ -4,7 +4,7 @@
   / _` / __| | | | '_ \ / __| |_ / _ \| '__| '_ ` _ \   | / __|
  | (_| \__ \ |_| | | | | (__|  _| (_) | |  | | | | | |_ | \__ \
   \__,_|___/\__, |_| |_|\___|_|  \___/|_|  |_| |_| |_(_)/ |___/
-  qzip      |___/                                     |__/      v1.0.0
+  qzip      |___/                                     |__/      v1.0.1
 _______________________________________________________________________
     a simple way of doing forms without refreshing your page!
         this works in the literal same way a form does.
@@ -20,6 +20,7 @@ document.addEventListener('submit', async function (event) {
 
     const method = (form.getAttribute('method')).toUpperCase() || 'GET';
     const action = form.getAttribute('action');
+    const headers =  JSON.parse(form.getAttribute('headers') || "{}") || {};
     const responsehtml = form.getAttribute('responsehtml') || null;
     const responsejs = form.getAttribute('responsejs') || null;
 
@@ -34,13 +35,12 @@ document.addEventListener('submit', async function (event) {
         }
     }
 
+    headers['Content-Type'] = 'application/x-www-form-urlencoded';
     try {
       response = await fetch(url, {
         method,
         body: method !== 'GET' ? formdata : undefined,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
+        headers: headers,
       });
 
       if (!response.ok) {
