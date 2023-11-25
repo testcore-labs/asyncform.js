@@ -18,3 +18,8 @@ example:
 ```
 
 and thats it, enjoy.
+
+also to directly include the js file into your html:
+```html
+<script src="https://raw.githubusercontent.com/testcore-labs/asyncform.js/main/asyncform.js"></script>
+```
