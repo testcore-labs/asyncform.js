@@ -9,7 +9,7 @@ console.log("result " + responsedata);
 ```
 example:
 ```html
-<form type="asyncform" method="GET" action="/api/test" responsehtml="#element" responsejs="test">
+<form type="asyncform" method="GET" action="/api/test" responsehtml="#element" headers='{"test": true}' responsejs="test">
   <input type="text" name="text" placeholder="inputone">
   <input type="text" name="tssext" placeholder="inputone">
   <input type="text" name="tsssssext" placeholder="inputone">
