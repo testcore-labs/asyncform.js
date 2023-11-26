@@ -48,6 +48,7 @@ document.addEventListener('submit', async function (event) {
         body: method !== 'GET' ? formdata : undefined,
         headers: headers,
       });
+      form.setAttribute("requesting", true);
 
       if (!response.ok) {
         throw new Error(url + ` response was ${response.status}`);
@@ -55,6 +56,7 @@ document.addEventListener('submit', async function (event) {
 
       const responsedata = await response.text();
 
+      form.setAttribute("requesting", false);
       if (responsehtml) {
         const responseelem = document.querySelector(responsehtml);
         if (responseelem) {
