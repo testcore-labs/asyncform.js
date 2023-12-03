@@ -4,7 +4,7 @@
   / _` / __| | | | '_ \ / __| |_ / _ \| '__| '_ ` _ \   | / __|
  | (_| \__ \ |_| | | | | (__|  _| (_) | |  | | | | | |_ | \__ \
   \__,_|___/\__, |_| |_|\___|_|  \___/|_|  |_| |_| |_(_)/ |___/
-  qzip      |___/                                     |__/      v1.0.3
+  qzip      |___/                                     |__/      v1.0.4
 _______________________________________________________________________
     a simple way of doing forms without refreshing your page!
         this works in the literal same way a form does.
@@ -43,13 +43,13 @@ document.addEventListener('submit', async function (event) {
     }
     //useless, set it yourself with the attribute headers.
     //headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    form.setAttribute("requesting", true);
     try {
       response = await fetch(url, {
         method,
         body: method !== 'GET' ? formdata : undefined,
         headers: headers,
       });
-      form.setAttribute("requesting", true);
 
       if (!response.ok) {
         throw new Error(url + ` response was ${response.status}`);
@@ -64,8 +64,13 @@ document.addEventListener('submit', async function (event) {
           responseelem.innerHTML = responsedata;
         }
       }
-      if (responsejs && window[responsejs]) {
-        window[responsejs](responsedata);
+      if (responsejs) {
+        var match = /(\w+)\(['"]([^'"]*)['"]\)/.exec(responsejs.trim());
+        if(!match) {
+        window[responsejs][responsedata];
+        } else {
+        window[match[1]].apply(null, [responsedata].concat(match[2].split(',').map(arg => arg.trim())));
+        }
       }
     } catch (error) {
       console.error('err:', error);
