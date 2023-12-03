@@ -41,7 +41,8 @@ document.addEventListener('submit', async function (event) {
             url.searchParams.append(key, value);
         }
     }
-    headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    //useless, set it yourself with the attribute headers.
+    //headers['Content-Type'] = 'application/x-www-form-urlencoded';
     try {
       response = await fetch(url, {
         method,
