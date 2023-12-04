@@ -24,7 +24,7 @@ document.addEventListener('submit', async function (event) {
     const btnaction = button.getAttribute('action') || false;
     const headers = JSON.parse(form.getAttribute('headers') || "{}") || {};
     const responsehtml = form.getAttribute('responsehtml') || null;
-    const responsejs = form.getAttribute('responsejs') || null;
+    const responsejs = form.getAttribute('responsejs') || null
 
     const formdata = new FormData(form);
     let url;
@@ -64,12 +64,12 @@ document.addEventListener('submit', async function (event) {
           responseelem.innerHTML = responsedata;
         }
       }
-      if (responsejs && window[responsejs][responsedata]) {
+      if (responsejs && window[responsejs] && window[responsejs](responsedata)) {
         var match = /(\w+)\(['"]([^'"]*)['"]\)/.exec(responsejs.trim());
         if(match) {
         window[match[1]].apply(null, [responsedata].concat(match[2].split(',').map(arg => arg.trim())));
         } else {
-        window[responsejs][responsedata];
+        window[responsejs](responsedata);
         }
       }
     } catch (error) {
