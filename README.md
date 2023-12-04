@@ -21,5 +21,5 @@ and thats it, enjoy.
 
 also to directly include the js file into your html:
 ```html
-<script src="https://cdn.jsdelivr.net/gh/testcore-labs/asyncform.js@v1.0.4/asyncform.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/testcore-labs/asyncform.js@v1.4.1/asyncform.js"></script>
 ```
