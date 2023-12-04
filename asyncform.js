@@ -66,10 +66,10 @@ document.addEventListener('submit', async function (event) {
       }
       if (responsejs && window[responsejs][responsedata]) {
         var match = /(\w+)\(['"]([^'"]*)['"]\)/.exec(responsejs.trim());
-        if(!match) {
-        window[responsejs][responsedata];
-        } else {
+        if(match) {
         window[match[1]].apply(null, [responsedata].concat(match[2].split(',').map(arg => arg.trim())));
+        } else {
+        window[responsejs][responsedata];
         }
       }
     } catch (error) {
