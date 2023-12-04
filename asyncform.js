@@ -64,7 +64,7 @@ document.addEventListener('submit', async function (event) {
           responseelem.innerHTML = responsedata;
         }
       }
-      if (responsejs) {
+      if (responsejs && window[responsejs][responsedata]) {
         var match = /(\w+)\(['"]([^'"]*)['"]\)/.exec(responsejs.trim());
         if(!match) {
         window[responsejs][responsedata];
