@@ -24,7 +24,7 @@ document.addEventListener('submit', async function (event) {
     const btnaction = button.getAttribute('action') || false;
     const headers = JSON.parse(form.getAttribute('headers') || "{}") || {};
     const responsehtml = form.getAttribute('responsehtml') || null;
-    const responsejs = form.getAttribute('responsejs') || null
+    const responsejs = form.getAttribute('responsejs') || null;
 
     const formdata = new FormData(form);
     let url;
